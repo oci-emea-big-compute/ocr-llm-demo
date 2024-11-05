@@ -12,13 +12,27 @@ You need to install
 - anaconda or miniconda
 - sudo apt-get install python-poppler
 
+
+### Install and activate 
+conda env create -f ocr-llm.yaml
+conda activate ocr-llm
+
+
 ## LLM Models
 
 In this Demo we use VLLM to serve multi modal models with the OpenAI API. We tested Pixtral-12B on a VM with 2 A10, and Qwen2-VL on a single A10. 
 Llama-3.2-11B-Vision-Instruct is also an option.
 
+You first need to login to Hugging Face to download the weights
+huggingface-cli login
+
 vllm serve  mistralai/Pixtral-12B-2409 --dtype auto  --tokenizer-mode  mistral -tp 2 --port 8001 --max-model-len 32768
- vllm serve  Qwen/Qwen2-VL-7B-Instruct  --dtype auto --max-model-len 8192 --enforce-eager --port 8000
+vllm serve  Qwen/Qwen2-VL-7B-Instruct  --dtype auto --max-model-len 8192 --enforce-eager --port 8000
 
-
+and if you have access you can do 
+vllm serve  meta-llama/Llama-3.2-11B-Vision-Instruct --dtype auto   --port 8002 --max-model-len 32768
   
+## Sample impages
+
+The folder pictures includes some example pictures that can be used in the demo. You can add additional images to improve the demo.
+The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added automated conversion for PDF images, but for multipage PDF only the firt page will be considered.
