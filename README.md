@@ -32,7 +32,15 @@ vllm serve  Qwen/Qwen2-VL-7B-Instruct  --dtype auto --max-model-len 8192 --enfor
 and if you have access you can do 
 vllm serve  meta-llama/Llama-3.2-11B-Vision-Instruct --dtype auto   --port 8002 --max-model-len 32768
   
-## Sample impages
+## Sample images
 
 The folder pictures includes some example pictures that can be used in the demo. You can add additional images to improve the demo.
 The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added automated conversion for PDF images, but for multipage PDF only the firt page will be considered.
+
+
+## Running the guy
+
+You have a Gradio based GUI available:
+
+python gui.py
+
