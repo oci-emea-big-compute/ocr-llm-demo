@@ -14,9 +14,10 @@ You need to install
 
 
 ### Install and activate 
+```
 conda env create -f ocr-llm.yaml
 conda activate ocr-llm
-
+```
 
 ## LLM Models
 
@@ -24,14 +25,18 @@ In this Demo we use VLLM to serve multi modal models with the OpenAI API. We tes
 Llama-3.2-11B-Vision-Instruct is also an option.
 
 You first need to login to Hugging Face to download the weights
+```
 huggingface-cli login
+```
+and you serve one of the VLLM supported visual models. According to the number of GPUs in your shape you might be able to execute one model or more concurrenlty. For llama-3.2 access in Europe is currenlty restricted.
 
+```
 vllm serve  mistralai/Pixtral-12B-2409 --dtype auto  --tokenizer-mode  mistral -tp 2 --port 8001 --max-model-len 32768
+
 vllm serve  Qwen/Qwen2-VL-7B-Instruct  --dtype auto --max-model-len 8192 --enforce-eager --port 8000
 
-and if you have access you can do 
 vllm serve  meta-llama/Llama-3.2-11B-Vision-Instruct --dtype auto   --port 8002 --max-model-len 32768
-  
+```  
 ## Sample images
 
 The folder pictures includes some example pictures that can be used in the demo. You can add additional images to improve the demo.
@@ -41,6 +46,15 @@ The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added autom
 ## Running the guy
 
 You have a Gradio based GUI available:
-
+```
 python gui.py
+```
 
+Gradio is configured to proxy to a public connection, similar to the following one
+
+```
+* Running on local URL:  http://127.0.0.1:7860
+* Running on public URL: https://44250956c28a3b22ac.gradio.live
+
+This share link expires in 72 hours. For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)
+```
