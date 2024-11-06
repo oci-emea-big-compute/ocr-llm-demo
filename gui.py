@@ -48,6 +48,9 @@ def contact_llm(model_label,query,image_path):
  if model_label=="Qwen2-VL":
       model="Qwen/Qwen2-VL-7B-Instruct"
       port=str(8000)
+ if model_label=="Llama-3.2-Vision":
+      model="meta-llama/Llama-3.2-11B-Vision-Instruct"
+      port=str(8002)
 
 
  if query != "":
@@ -90,9 +93,9 @@ if __name__ == "__main__":
         fn=contact_llm,
         inputs=[
             gr.Dropdown(
-            ["Pixtral-12B", "Qwen2-VL", "Llama3.1"], label="Model", info="Pick the model to use"
+            ["Pixtral-12B", "Qwen2-VL", "Llama3.2-Vision"], label="Model", info="Pick the model to use"
         ),  gr.Textbox(label="Enter your query", placeholder="Ask a question about the content"),
-            gr.FileExplorer(glob="**/**",root_dir="/home/ubuntu/pictures",ignore_glob="**/__init__.py",)
+            gr.FileExplorer(glob="**/**",root_dir="./pictures",ignore_glob="**/__init__.py",)
         ],
         outputs=[gr.Textbox(label="Query"), gr.Textbox(label="Response"), gr.Image(type="pil")],
         title="Pixtral-12b RAG Application",
