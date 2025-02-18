@@ -43,11 +43,11 @@ The folder pictures includes some example pictures that can be used in the demo.
 The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added automated conversion for PDF images, but for multipage PDF only the firt page will be considered.
 
 
-## Running the guy
+## Running the GUI
 
 You have a Gradio based GUI available:
 ```
-python gui.py
+python gui5.py
 ```
 
 Gradio is configured to proxy to a public connection, similar to the following one
