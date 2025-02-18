@@ -51,6 +51,7 @@ python gui5.py
 ```
 
 Gradio is configured to proxy to a public connection, similar to the following one
+ ![Alt text](gui.png?raw=true "GUI")
 
 ## Executing Qwen-2.5-VL as backend API
 
@@ -63,4 +64,4 @@ You first need to download the models with the downloads.sh script and later you
 This share link expires in 72 hours. For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)
 ```
 
- ![Alt text](gui.png?raw=true "GUI")
+
