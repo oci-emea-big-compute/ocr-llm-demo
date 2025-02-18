@@ -48,6 +48,12 @@ def contact_llm(model_label,query,image_path):
  if model_label=="Qwen2-VL":
       model="Qwen/Qwen2-VL-7B-Instruct"
       port=str(8000)
+ if model_label=="Qwen2.5-VL":
+      model="Qwen2.5-VL-7B-Instruct"
+      port=str(9192)
+ if model_label=="Qwen2.5-VL-72B":
+      model="Qwen2.5-VL-72B-Instruct"
+      port=str(9193)
  if model_label=="Llama-3.2-Vision":
       model="meta-llama/Llama-3.2-11B-Vision-Instruct"
       port=str(8002)
@@ -93,7 +99,7 @@ if __name__ == "__main__":
         fn=contact_llm,
         inputs=[
             gr.Dropdown(
-            ["Pixtral-12B", "Qwen2-VL", "Llama3.2-Vision"], label="Model", info="Pick the model to use"
+            ["Pixtral-12B", "Qwen2-VL", "Qwen2.5-VL", "Qwen2.5-VL-72B", "Llama3.2-Vision"], label="Model", info="Pick the model to use"
         ),  gr.Textbox(label="Enter your query", placeholder="Ask a question about the content"),
             gr.FileExplorer(glob="**/**",root_dir="./pictures",ignore_glob="**/__init__.py",)
         ],
