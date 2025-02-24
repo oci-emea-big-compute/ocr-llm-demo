@@ -43,15 +43,20 @@ The folder pictures includes some example pictures that can be used in the demo.
 The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added automated conversion for PDF images, but for multipage PDF only the firt page will be considered.
 
 
-## Running the guy
+## Running the GUI
 
 You have a Gradio based GUI available:
 ```
-python gui.py
+python gui5.py
 ```
 
 Gradio is configured to proxy to a public connection, similar to the following one
+ ![Alt text](gui.png?raw=true "GUI")
 
+## Executing Qwen-2.5-VL as backend API
+
+Qwen-2.5-VL are new models, and are not yet available in VLLM, so we use fastapi implementation from https://github.com/phildougherty/qwen2.5-VL-inference-openai to run it.
+You first need to download the models with the downloads.sh script and later you can start it with python app.py (8B variant) and app72.py (72B). We provide a conda env, but you might need to install transofrmers manually from the repo.  
 ```
 * Running on local URL:  http://127.0.0.1:7860
 * Running on public URL: https://44250956c28a3b22ac.gradio.live
@@ -59,4 +64,4 @@ Gradio is configured to proxy to a public connection, similar to the following o
 This share link expires in 72 hours. For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)
 ```
 
- ![Alt text](gui.png?raw=true "GUI")
+
