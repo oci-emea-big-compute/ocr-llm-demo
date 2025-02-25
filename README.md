@@ -62,20 +62,23 @@ Qwen-2.5-VL are now supported by VLLM but you mught still need to install transf
 
 You can execute the 72B model  on the 8 A100 GPUs of BM.GPU.4.8  with
 
+```
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct  --dtype auto  -tp 8 --port 9193
-
-inference time 40-50 seconds
+```
+inference time 40-50 seconds.
 
 It can also be executed on a BM.GPU.L40s.4 by limiting context length
 
+```
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct  --dtype auto  -tp 4 --port 9193 --max-model-len 16000 --enforce-eager
-
+```
 inference time about 60 seconds
 
-The 7B model can be executed on 1 GPUs
+The 7B model can be executed on 2 GPUs
 
-vllm serve Qwen/Qwen2.5-VL-7B-Instruct  --dtype auto   --port 9192
-
+```
+vllm serve Qwen/Qwen2.5-VL-7B-Instruct  --dtype auto -tp 2  --port 9192
+```
 
 
 
