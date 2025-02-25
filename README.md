@@ -47,7 +47,7 @@ The LLM supported formats are PNG,JPG,WEBP, non animated GIF. I also added autom
 
 You have a Gradio based GUI available:
 ```
-python gui5.py
+python gui6.py
 ```
 
 Gradio is configured to proxy to a public connection, similar to the following one
@@ -55,13 +55,27 @@ Gradio is configured to proxy to a public connection, similar to the following o
 
 ## Executing Qwen-2.5-VL as backend API
 
-Qwen-2.5-VL are new models, and are not yet available in VLLM, so we use fastapi implementation from https://github.com/phildougherty/qwen2.5-VL-inference-openai to run it.
-You first need to download the models with the downloads.sh script and later you can start it with python app.py (8B variant) and app72.py (72B). We provide a conda env, but you might need to install transofrmers manually from the repo.  
-```
-* Running on local URL:  http://127.0.0.1:7860
-* Running on public URL: https://44250956c28a3b22ac.gradio.live
 
-This share link expires in 72 hours. For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)
-```
+
+
+Qwen-2.5-VL are now supported by VLLM but you mught still need to install transformers from github repo. 
+
+You can execute the 72B model  on the 8 A100 GPUs of BM.GPU.4.8  with
+
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct  --dtype auto  -tp 8 --port 9193
+
+inference time 40-50 seconds
+
+It can also be executed on a BM.GPU.L40s.4 by limiting context length
+
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct  --dtype auto  -tp 4 --port 9193 --max-model-len 16000 --enforce-eager
+
+inference time about 60 seconds
+
+The 7B model can be executed on 1 GPUs
+
+vllm serve Qwen/Qwen2.5-VL-7B-Instruct  --dtype auto   --port 9192
+
+
 
 
